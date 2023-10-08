@@ -21,6 +21,7 @@
       }
     </style>
     <% if @result %>
+    <% j = 0 %>
     <% @result.each do |user| %>
     <%
     if user.icon_file
@@ -70,7 +71,7 @@
           <span><%= community.name %></span>
         </div>
         <div class="communities" style="float:right;">
-          <% @path[i].reverse_each do |path| %>
+          <% @group_path[i].reverse_each do |path| %>
           <% group = Group.find_by(uniqid:path) %>
           /<a href="/community/<%= group.uniqid %>"><%= group.name %></a>
           <% end %>

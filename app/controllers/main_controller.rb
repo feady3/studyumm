@@ -15,12 +15,18 @@ class MainController < ApplicationController
     end
     @communities = Group.all
     i = 0
-    @path = []
+    @group_path = []
     @communities.each do |community|
-      @path[i] = self.get_group_path(community.uniqid)
+      @group_path[i] = self.get_group_path(community.uniqid)
       i += 1
     end
     @users = User.all
+    j = 0
+    @user_path = []
+    @users.each do |community|
+      @user_path[j] = self.get_user_path(community.uniqid)
+      j += 1
+    end
     @result = User.where("user_id LIKE? OR user_name LIKE?","%#{params[:keyword]}%","%#{params[:keyword]}%")
   end
   def search_form
@@ -35,6 +41,22 @@ class MainController < ApplicationController
       path[i] = in_which
       in_which = Group.find_by(uniqid:in_which).in_which
       i += 1;
+    end
+    return path;
+  end
+
+  def get_user_path(uniqid)
+    i = 0
+    path = []
+    Grouplog.where(user_uniqid:uniqid,tip:true).reverse_each do |grouplog|
+      path[i] = []
+      path[i][0] = grouplog.group_uniqid
+      j = 1
+      while Group.find_by(uniqid:path[i][j-1]).in_which do
+        path[i][j] = Group.find_by(uniqid:path[i][j-1]).in_which
+        j += 1
+      end
+      i += 1
     end
     return path;
   end
