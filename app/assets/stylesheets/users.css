@@ -1,0 +1,56 @@
+.user-container{
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.user-discription{
+  border-bottom: 1px solid #ccc;
+}
+
+.icon-container{
+  width: 200px;
+  display: inline-block;
+}
+
+.big-icon{
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+}
+
+.discription-container{
+  display: inline-block;
+}
+
+.name{
+  display: inline-block;
+  font-size: 20px;
+  margin-right: 25px;
+  max-width: 250px;
+  word-break: break-all;
+}
+
+.name span{
+  font-weight: bold;
+}
+
+.communities{
+  margin: 10px 0px;
+}
+
+.communities a{
+  color: #000;
+  text-decoration: underline;
+}
+
+.communities a:hover{
+  text-decoration: none;
+}
+
+.discription{
+
+}
+
+#profile-edit{
+}

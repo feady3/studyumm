@@ -1,0 +1,71 @@
+.normal-input{
+  display: block;
+  width: 250px;
+  margin-top: 10px;
+  font-size: 15px;
+  padding: 10px;
+  border: 1px solid #aaa;
+  border-radius: 5px;
+}
+
+.normal-button,.gray-button{
+  display: inline-block;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 7px;
+}
+
+.normal-button{
+  background-color: #0095f6;
+  color: white;
+}
+
+.gray-button{
+  background-color: #ddd;
+  color: #000;
+}
+
+.pop-up{
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  padding: 20px 40px;
+  width: 500px;
+  height: 400px;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  background-color: white;
+  overflow-y: scroll;
+}
+
+.search-box{
+  margin: 10px;
+}
+
+.search-box input{
+  display: inline;
+  width: 200px;
+  height: 30px;
+  font-size: 15px;
+  padding: 10px;
+  border: 1px solid #aaa;
+  border-radius: 5px;
+}
+
+.tab-buttons{
+  text-align: center;
+  margin-top: 10px;
+}
+
+.tab-button{
+  display: inline-block;
+  width: 200px;
+  color: #000;
+  font-size: 15px;
+  margin: 0px 20px;
+}
+
+.button-form{
+  display: inline;
+}

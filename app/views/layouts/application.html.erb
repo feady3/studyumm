@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Studyumm</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "reset", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "ui", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+    <% unless current_page?("/sessions/signup") || current_page?("/sessions/login") %>
+    <% if session[:uniqid] %>
+    <%= render 'template/menubar' %>
+    <% end %>
+    <% end %>
+    <main>
+        <%= yield %>
+    </main>
+    <script type="text/javascript">
+      function showHide(target){
+        var elm = document.getElementById(target);
+        elm.classList.toggle("hide");
+      }
+      function toggleClass(target,clas){
+        var hide = document.getElementById(target);
+        hide.classList.toggle(clas);
+      }
+      function setImage(target) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+        document.getElementById("preview").setAttribute('src', e.target.result);
+      }
+      reader.readAsDataURL(target.files[0]);
+    }
+    </script>
+  </body>
+</html>

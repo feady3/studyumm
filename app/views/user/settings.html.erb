@@ -1,0 +1,5 @@
+<%= stylesheet_link_tag "users", "data-turbo-track": "reload" %>
+<h2>設定</h2>
+<div class="user-container">
+  <%= render '/user/settings/'+params[:tab] %>
+</div>

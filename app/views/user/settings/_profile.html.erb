@@ -1,0 +1,13 @@
+<h2>プロフィールの編集</h2><br>
+<%= form_tag("/settings/edit_profile",{multipart:true}) do %>
+<img class="big-icon user-icon" src="/assets/icons/<%= @icon %>" alt=""><br><br>
+<label class="normal-button" id="setImg" for="img">アイコンを変更</label><br><br>
+<input class="normal-input" id="img" type="file" name="icon" value="" accept="image/*" onchange="setImage(this);" onclick="this.value = '';">
+<img id="preview" src="" alt="">
+<p>ユーザー名</p>
+<input class="normal-input" type="text" name="user_id" value="<%= @myself.user_id %>" pattern="^[_0-9A-Za-z]+$" required><br>
+<p>表示名</p>
+<input class="normal-input" type="text" name="user_name" value="<%= @myself.user_name %>" required><br>
+<button class="normal-button" type="submit" name="button">保存する</button><br><br>
+<% end %>
+<%= flash[:msg] %>

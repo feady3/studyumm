@@ -1,0 +1,13 @@
+<%= stylesheet_link_tag "account", "data-turbo-track": "reload" %>
+<div class="center-container">
+  <img class="logo" src="/assets/logo.png" alt="">
+  <%= form_tag("/sessions/login") do %>
+  <div class="account-inputs">
+    <input class="account-input" type="text" name="user_id" value="" placeholder="ユーザー名">
+    <input class="account-input" type="password" name="password" value="" placeholder="パスワード">
+  </div>
+  <button class="account-button" type="submit" name="signup">ログイン</button><br><br>
+  <p>初めてですか？<a href="/sessions/signup">サインアップする</a></p>
+  <% end %>
+  <%= flash[:msg] %>
+</div>

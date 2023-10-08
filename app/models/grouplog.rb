@@ -1,0 +1,2 @@
+class Grouplog < ApplicationRecord
+end

@@ -1,0 +1,175 @@
+@font-face {
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+}
+
+html{
+  height: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  color: #000;
+}
+
+html::-webkit-scrollbar{
+    display:none;
+}
+
+.hide{
+  display: none;
+}
+
+a{
+  color: #000;
+  text-decoration: none;
+  color: #0095f6;
+}
+
+.menubar{
+  width: 200px;
+  background-color: white;
+  position: fixed;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  border-right: 1px solid #ccc;
+  z-index: 100;
+}
+
+.menubar-logo{
+  width: 130px;
+  margin: 20px 20px 0px 20px;
+}
+
+.menu{
+  margin: 0px 20px 0px 20px;
+}
+
+.menu-list{
+  font-size: 18px;
+  display: block;
+  margin: 10px 0px;
+  padding: 10px;
+  border-radius: 10px;
+  transition: all 0.3s;
+  color: #000;
+}
+
+.menu-list:hover{
+  background-color: #eee;
+}
+
+.bottom-menu{
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+}
+
+main{
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 250px;
+  padding: 15px;
+  z-index: 100;
+  background-color: white;
+  overflow-x: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+main::-webkit-scrollbar{
+    display:none;
+}
+
+input[type="file"] {
+  display: none;
+}
+label{
+  cursor: pointer;
+  color: var(--theme-color);
+}
+#preview{
+  width: 200px;
+  margin: 0 auto;
+}
+
+.center-container{
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.center-header{
+  position: fixed;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  top: 0px;
+  padding-top: 15px;
+  background-color: white;
+  border-bottom: 1px solid #ccc;
+}
+
+.center-header .search-box{
+  position: absolute;
+  top: 0px;
+  right: 0px;
+}
+
+.center-main{
+  padding-top: 50px;
+}
+
+.center-main{
+  padding-top: 80px;
+}
+
+.contents-container{
+  padding: 15px 0px;
+}
+
+.contents-container .contents-name{
+  display: inline;
+  vertical-align: middle;
+  font-size: 15px;
+  color: #000;
+}
+
+.contents-container .contents-name span{
+  font-weight: bold;
+}
+
+.contents-container .contents-path{
+  display: inline;
+  font-size: 15px;
+  color: #000;
+  vertical-align: bottom;
+}
+
+.mid-icon{
+  width: 45px;
+  height: 45px;
+  vertical-align: middle;
+  object-fit: cover;
+  border: 1px solid #ccc;
+}
+
+.com-icon{
+  border-radius: 20%;
+}
+
+.user-icon{
+  border-radius: 50%;
+}
+
+.right-button{
+  float:right;
+}
+
+.communities a{
+  color: #000;
+  text-decoration: underline;
+}
+
+.communities a:hover{
+  text-decoration: none;
+}

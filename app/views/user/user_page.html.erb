@@ -1,0 +1,25 @@
+<%= stylesheet_link_tag "users", "data-turbo-track": "reload" %>
+<div class="user-container">
+  <div class="user-discription">
+    <div class="icon-container">
+      <img class="big-icon user-icon" src="/assets/icons/<%= @icon %>" alt="">
+    </div>
+    <div class="discription-container">
+      <div class="name"><span><%= @user.user_name %></span>@<%= @user.user_id %></div>
+      <% if @user.uniqid == @myself.uniqid then %>
+      <a class="gray-button" href="/settings/profile">プロフィールを編集</a>
+      <% end %>
+      <div class="communities">
+        <% @path_list.reverse_each do |path_list| %>
+        <% path_list.reverse_each do |path| %>
+        /<a href="/community/<%= Group.find_by(uniqid:path).uniqid %>"><%= Group.find_by(uniqid:path).name %></a>
+        <% end %><br>
+        <% end %>
+      </div>
+    </div>
+    <div class="tab-buttons">
+      <a class="tab-button" href="@<%= @user.user_id %>">成績個表</a>
+      <a class="tab-button" href="/@<%= @user.user_id %>/posts">投稿</a>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,8 @@
+<%= stylesheet_link_tag "share", "data-turbo-track": "reload" %>
+<h2>成績をシェアする</h2>
+<div class="center-container">
+  <%= form_tag("/post/share",{multipart:true}) do %>
+  <textarea class="comment-form" name="comment" placeholder="コメントを添付"></textarea><br>
+  <button class="normal-button" type="submit" name="button">シェアする</button><br><br>
+  <% end %>
+</div>

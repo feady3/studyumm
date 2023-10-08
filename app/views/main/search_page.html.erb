@@ -1,0 +1,84 @@
+<div class="center-container">
+  <div class="center-header">
+    <h2>検索</h2>
+    <div class="search-box">
+      <%= form_tag("/search_form") do %>
+      <input type="text" name="keyword" value="<%= params[:keyword] %>" placeholder="検索">
+      <% end %>
+    </div>
+    <div class="tab-buttons">
+      <a class="tab-button" id="users-tab-button" href="/search/users">ユーザー</a>
+      <a class="tab-button"id="communities-tab-button" href="/search/communities">コミュニティ</a>
+    </div>
+  </div>
+  <div class="center-main">
+    <% case @tab %>
+    <% when 'users' %>
+    <style media="screen">
+      #users-tab-button{
+        font-weight: bold;
+        border-bottom: 5px solid #ff6100;
+      }
+    </style>
+    <% if @result %>
+    <% @result.each do |user| %>
+    <%
+    if user.icon_file
+      user_icon = user.icon_file
+    else
+      user_icon = "default-icon.png"
+    end
+    %>
+    <div class="contents-container">
+      <a href="/@<%= user.user_id %>">
+        <img class="mid-icon user-icon" src="/assets/icons/<%= user_icon %>" alt="">
+        <div class="contents-name">
+          <span><%= user.user_name %></span>@<%= user.user_id %>
+        </div>
+      </a>
+      <button class="normal-button right-button" type="button" name="button">友達になる</button>
+    </div>
+    <% end %>
+    <% else %>
+
+    <% end %>
+    <% when 'communities' %>
+    <style media="screen">
+      #communities-tab-button{
+        font-weight: bold;
+        border-bottom: 5px solid #ff6100;
+      }
+    </style>
+    <div class="contents-container">
+      <a href="/community/create">
+        コミュニティを作成
+      </a>
+    </div>
+    <% i = 0 %>
+    <% @communities.each do |community| %>
+    <%
+    if community.icon_file
+      com_icon = community.icon_file
+    else
+      com_icon = "default-icon.png"
+    end
+    %>
+    <div class="contents-container">
+      <a href="/community/<%= community.uniqid %>">
+        <img class="mid-icon com-icon" src="/assets/icons/<%= com_icon %>" alt="">
+        <div class="contents-name">
+          <span><%= community.name %></span>
+        </div>
+        <div class="communities" style="float:right;">
+          <% @path[i].reverse_each do |path| %>
+          <% group = Group.find_by(uniqid:path) %>
+          /<a href="/community/<%= group.uniqid %>"><%= group.name %></a>
+          <% end %>
+          <% i += 1 %>
+        </div>
+      </a>
+    </div>
+    <% end %>
+    <% end %>
+  </div>
+</div>
