@@ -1,6 +1,6 @@
 <%= stylesheet_link_tag "account", "data-turbo-track": "reload" %>
 <div class="center-container">
-  <img class="logo" src="/assets/logo.png" alt="">
+  <img class="logo" src="<%= @logo_data %>" alt="">
   <%= form_tag("/sessions/login") do %>
   <div class="account-inputs">
     <input class="account-input" type="text" name="user_id" value="" placeholder="ユーザー名">

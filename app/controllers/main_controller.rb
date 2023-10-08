@@ -6,6 +6,7 @@ class MainController < ApplicationController
       redirect_to("/sessions/login")
     end
   end
+
   def home
   end
   def search_page
