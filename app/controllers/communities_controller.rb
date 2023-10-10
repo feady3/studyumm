@@ -1,16 +1,25 @@
 class CommunitiesController < ApplicationController
   before_action :session_confirm
+  before_action :in_group_redirect, only: [:create_page]
   def session_confirm
     if !session['uniqid']
       redirect_to("/sessions/login")
     end
   end
+  def in_group_redirect
+    @community = Group.find_by(uniqid:params[:group])
+    if params[:group]
+      if !self.in_group(session['uniqid'],@community.uniqid)
+        redirect_to("/community/#{@community.uniqid}")
+      end
+    end
+  end
   def community_page
     @community = Group.find_by(uniqid:params[:uniqid])
-    if @community.icon_file
-      @icon = @community.icon_file
+    if @community.icon
+      @icon = @community.icon
     else
-      @icon = "default-icon.png"
+      @icon = Image::DEFAULT_ICON
     end
     @in_group = self.in_group(session['uniqid'],params[:uniqid])
     @join_allow = self.join_allow(session['uniqid'],params[:uniqid])
@@ -18,6 +27,16 @@ class CommunitiesController < ApplicationController
     @member_number = self.group_member(params[:uniqid]).count
     @tab = params[:tab]
     @included_communities = self.included_communities(params[:uniqid])
+  end
+  def create_page
+    if params[:group]
+      @community = Group.find_by(uniqid:params[:group])
+      @uniqid = @community.uniqid
+      @path = self.get_group_path(@community.uniqid)
+    else
+      @uniqid = ""
+      @path = "/"
+    end
   end
   def included_communities(uniqid)
     communities = Group.where(in_which:uniqid)
@@ -125,17 +144,17 @@ class CommunitiesController < ApplicationController
     uniqid = SecureRandom.uuid
     if params[:icon]
       icon_uniqid = SecureRandom.uuid
-      extname = File.extname(params[:icon])
-      image_name = icon_uniqid+extname
+      image_extname = File.extname(params[:icon])
       image = params[:icon]
-      File.binwrite("app/assets/images/icons/#{image_name}", image.read)
+      image_data = "data:image/#{image_extname};base64,"+Base64.strict_encode64(image.read)
+      madeby = session['uniqid']
     end
     if params[:group]
       in_which = params[:group]
     else
       in_which = nil
     end
-    new_group = Group.new(uniqid:uniqid,name:params[:name],in_which:in_which,icon_file:image_name)
+    new_group = Group.new(uniqid:uniqid,name:params[:name],in_which:in_which,icon:image_data)
     new_group.save
     group_log = Grouplog.new(user_uniqid:session['uniqid'],group_uniqid:uniqid)
     group_log.save

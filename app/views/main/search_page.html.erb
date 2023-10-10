@@ -24,15 +24,15 @@
     <% j = 0 %>
     <% @result.each do |user| %>
     <%
-    if user.icon_file
-      user_icon = user.icon_file
+    if user.icon
+      user_icon = user.icon
     else
-      user_icon = "default-icon.png"
+      user_icon = Image::DEFAULT_ICON
     end
     %>
     <div class="contents-container">
       <a href="/@<%= user.user_id %>">
-        <img class="mid-icon user-icon" src="/assets/icons/<%= user_icon %>" alt="">
+        <img class="mid-icon user-icon" src="<%= user_icon %>" alt="">
         <div class="contents-name">
           <span><%= user.user_name %></span>@<%= user.user_id %>
         </div>
@@ -58,15 +58,15 @@
     <% i = 0 %>
     <% @communities.each do |community| %>
     <%
-    if community.icon_file
-      com_icon = community.icon_file
+    if community.icon
+      com_icon = community.icon
     else
-      com_icon = "default-icon.png"
+      com_icon = Image::DEFAULT_ICON
     end
     %>
     <div class="contents-container">
       <a href="/community/<%= community.uniqid %>">
-        <img class="mid-icon com-icon" src="/assets/icons/<%= com_icon %>" alt="">
+        <img class="mid-icon com-icon" src="<%= com_icon %>" alt="">
         <div class="contents-name">
           <span><%= community.name %></span>
         </div>

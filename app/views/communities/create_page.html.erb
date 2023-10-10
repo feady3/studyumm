@@ -1,17 +1,18 @@
 <div class="center-container">
   <h2>コミュニティを作成</h2><br>
-  <p></p>
-  <%
-  if params[:group]
-    group = "/"+params[:group]
-  else
-    group = nil
-  end
-  %>
-  <%= form_tag("/community/create/#{group}",{multipart:true}) do %>
+  <%= form_tag("/community/create/#{@uniqid}",{multipart:true}) do %>
   <label class="normal-button" id="setImg" for="img">アイコンを選択</label><br><br>
   <input class="normal-input" id="img" type="file" name="icon" value="" accept="image/*" onchange="setImage(this);" onclick="this.value = '';">
   <img id="preview" src="" alt="">
+  <div class="communities">
+    <% if params[:group] %>
+    <% @path.reverse_each do |path| %>
+    <% group = Group.find_by(uniqid:path) %>
+    /<a href="/community/<%= group.uniqid %>"><%= group.name %></a>
+    <% end %>
+    /<a href="/community/<%= @community.uniqid %>"><%= @community.name %></a>
+    <% end %>
+  </div>
   <input class="normal-input" type="text" name="name" value="" placeholder="コミュニティの名前"><br>
   <button class="normal-button" type="submit" name="button">作成</button>
   <% end %>

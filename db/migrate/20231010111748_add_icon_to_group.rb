@@ -1,5 +1,5 @@
 class AddIconToGroup < ActiveRecord::Migration[7.0]
   def change
-    add_column :groups, :icon_file, :text
+    add_column :groups, :icon, :text
   end
 end

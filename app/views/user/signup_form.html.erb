@@ -1,6 +1,6 @@
 <%= stylesheet_link_tag "account", "data-turbo-track": "reload" %>
 <div class="center-container">
-  <img class="logo" src="<%= @logo_data %>" alt="">
+  <img class="logo" src="<%= Image::LOGO %>" alt="">
   <%= form_tag("/sessions/signup") do %>
   <div class="account-inputs">
     <input class="account-input" type="email" name="email" value="" placeholder="メールアドレス" required>

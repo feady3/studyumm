@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_26_220148) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_10_122922) do
   create_table "grouplogs", force: :cascade do |t|
     t.text "user_uniqid"
     t.text "group_uniqid"
@@ -25,7 +25,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_26_220148) do
     t.text "in_which"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.text "icon_file"
+    t.text "icon"
   end
 
   create_table "users", force: :cascade do |t|
@@ -36,7 +36,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_26_220148) do
     t.text "password"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.text "icon_file"
+    t.text "icon"
   end
 
 end

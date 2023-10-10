@@ -1,6 +1,6 @@
 <h2>プロフィールの編集</h2><br>
 <%= form_tag("/settings/edit_profile",{multipart:true}) do %>
-<img class="big-icon user-icon" src="/assets/icons/<%= @icon %>" alt=""><br><br>
+<img class="big-icon user-icon" src="<%= @myself.icon %>" alt=""><br><br>
 <label class="normal-button" id="setImg" for="img">アイコンを変更</label><br><br>
 <input class="normal-input" id="img" type="file" name="icon" value="" accept="image/*" onchange="setImage(this);" onclick="this.value = '';">
 <img id="preview" src="" alt="">
