@@ -1,0 +1,129 @@
+<% post = @post %>
+<% user = User.find_by(uniqid:post.user_uniqid) %>
+<div class="contents-container">
+  <div class="account">
+    <a href="/@<%= user.user_id %>">
+      <img class="mid-icon user-icon" src="<%= user.icon %>" alt="">
+      <div class="contents-name">
+        <span><%= user.user_name %></span>@<%= user.user_id %>
+      </div>
+    </a>
+  </div>
+  <table class="points-table">
+    <tr>
+      <th><a href="#"><%= post.exam_name %></a></th>
+      <% if !Post.find_by(exam_name:post.exam_name,user_uniqid:session['uniqid']) %>
+      <th><a class="normal-button add-points" href="share/<%= post.exam_name %>">自分の成績を追加</a></th>
+      <% end %>
+      <% if user.uniqid == session['uniqid'] %>
+      <th><a class="gray-button add-points" href="share/<%= post.exam_name %>">成績を編集</a></th>
+      <% end %>
+    </tr>
+    <tr>
+      <th>科目</th><th>点数</th>
+    </tr>
+    <% if post.math1 %>
+    <tr>
+      <td>数学（１）</td>
+      <td class="point"><%= post.math1 %></td>
+    </tr>
+    <% end %>
+    <% if post.math2 %>
+    <tr>
+      <td>数学（２）</td>
+      <td class="point"><%= post.math2 %></td>
+    </tr>
+    <% end %>
+    <% if post.en1 %>
+    <tr>
+      <td>英語（１）</td>
+      <td class="point"><%= post.en1 %></td>
+    </tr>
+    <% end %>
+    <% if post.en2 %>
+    <tr>
+      <td>英語（２）</td>
+      <td class="point"><%= post.en2 %></td>
+    </tr>
+    <% end %>
+    <% if post.ja1 %>
+    <tr>
+      <td>国語（１）</td>
+      <td class="point"><%= post.ja1 %></td>
+    </tr>
+    <% end %>
+    <% if post.ja2 %>
+    <tr>
+      <td>国語（２）</td>
+      <td class="point"><%= post.ja2 %></td>
+    </tr>
+    <% end %>
+    <% if post.sci1 %>
+    <tr>
+      <td>理科（１）</td>
+      <td class="point"><%= post.sci1 %></td>
+    </tr>
+    <% end %>
+    <% if post.sci2 %>
+    <tr>
+      <td>理科（２）</td>
+      <td class="point"><%= post.sci2 %></td>
+    </tr>
+    <% end %>
+    <% if post.soc1 %>
+    <tr>
+      <td>社会（１）</td>
+      <td class="point"><%= post.soc1 %></td>
+    </tr>
+    <% end %>
+    <% if post.soc2 %>
+    <tr>
+      <td>社会（２）</td>
+      <td class="point"><%= post.soc2 %></td>
+    </tr>
+    <% end %>
+    <tr>
+      <td>合計</td>
+      <td class="point"><%= post.total %></td>
+    </tr>
+  </table>
+  <div class="others">
+    <% if post.comments != "" %>
+    <div class="comments">
+      <%= raw(h(post.comments).gsub(/\R/, "<br>")) %>
+    </div>
+    <% end %>
+  </div>
+</div>
+
+<style media="screen">
+  .account{
+    display: block;
+    margin-bottom: 10px;
+  }
+  .exam-name{
+    display: inline-block;
+  }
+  .points-table{
+    display: inline-block;
+  }
+  .point{
+    font-weight: bold;
+  }
+  .others{
+    display: inline-block;
+    margin-left: 20px;
+    vertical-align: top;
+  }
+  .comments{
+    display: inline-block;
+    background-color: #D9E5FF;
+    color: black;
+    font-weight: bold;
+    padding: 10px 15px;
+    border-radius: 3px 15px 15px 15px;
+  }
+  .add-points{
+
+  }
+</style>

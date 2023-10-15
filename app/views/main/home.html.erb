@@ -1,5 +1,14 @@
 <div class="center-container">
-  <h1>Main#home</h1>
-  <p>Find me in app/views/main/home.html.erb</p>
-  <%= session['uniqid'] %>
+  <div class="center-header">
+    <h2>ホーム</h2>
+    <div class="tab-buttons">
+
+    </div>
+  </div>
+  <div class="center-main">
+    <% @posts.each do |post| %>
+    <% @post = post %>
+    <%= render 'template/post' %>
+    <% end %>
+  </div>
 </div>

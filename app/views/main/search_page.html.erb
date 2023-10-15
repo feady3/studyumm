@@ -22,7 +22,7 @@
     </style>
     <% if @result %>
     <% j = 0 %>
-    <% @result.each do |user| %>
+    <% @result.reverse_each do |user| %>
     <%
     if user.icon
       user_icon = user.icon
@@ -56,7 +56,7 @@
       </a>
     </div>
     <% i = 0 %>
-    <% @communities.each do |community| %>
+    <% @communities.reverse_each do |community| %>
     <%
     if community.icon
       com_icon = community.icon

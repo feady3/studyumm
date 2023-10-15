@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_uniqid: MyString
+  exam_name: MyString
+  points: MyString
+  comments: MyText
+  publish_range: MyString
+
+two:
+  user_uniqid: MyString
+  exam_name: MyString
+  points: MyString
+  comments: MyText
+  publish_range: MyString

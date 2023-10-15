@@ -127,18 +127,18 @@ label{
   padding: 15px 0px;
 }
 
-.contents-container .contents-name{
+.contents-name{
   display: inline;
   vertical-align: middle;
   font-size: 15px;
   color: #000;
 }
 
-.contents-container .contents-name span{
+.contents-name span{
   font-weight: bold;
 }
 
-.contents-container .contents-path{
+.contents-path{
   display: inline;
   font-size: 15px;
   color: #000;
@@ -172,4 +172,18 @@ label{
 
 .communities a:hover{
   text-decoration: none;
+}
+
+.points-table{
+  text-align: center;
+}
+th,td{
+  border: 1px solid #aaa;
+  padding: 10px;
+}
+th{
+  width: 200px;
+}
+.point{
+  text-align: center;
 }

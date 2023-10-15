@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_10_122922) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_15_083523) do
+  create_table "friendslogs", force: :cascade do |t|
+    t.string "from"
+    t.string "to"
+    t.integer "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "grouplogs", force: :cascade do |t|
     t.text "user_uniqid"
     t.text "group_uniqid"
@@ -26,6 +34,28 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_10_122922) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "icon"
+    t.string "manager"
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.string "user_uniqid"
+    t.string "exam_name"
+    t.text "comments"
+    t.string "publish_range"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "only_friends"
+    t.integer "math1"
+    t.integer "math2"
+    t.integer "en1"
+    t.integer "en2"
+    t.integer "ja1"
+    t.integer "ja2"
+    t.integer "sci1"
+    t.integer "sci2"
+    t.integer "soc1"
+    t.integer "soc2"
+    t.integer "total"
   end
 
   create_table "users", force: :cascade do |t|

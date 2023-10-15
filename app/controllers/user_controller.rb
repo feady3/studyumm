@@ -36,6 +36,11 @@ class UserController < ApplicationController
     end
   end
   def user_page
+    if !params[:tab]
+      @tab = "posts"
+    elsif params[:tab] == "groups"
+      @tab = "groups"
+    end
     if @user.icon
       @icon = @user.icon
     else

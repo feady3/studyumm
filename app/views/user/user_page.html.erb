@@ -18,8 +18,29 @@
       </div>
     </div>
     <div class="tab-buttons">
-      <a class="tab-button" href="@<%= @user.user_id %>">成績個表</a>
-      <a class="tab-button" href="/@<%= @user.user_id %>/posts">投稿</a>
+      <a class="tab-button" id="posts-tab-button" href="/@<%= @user.user_id %>">投稿</a>
+      <a class="tab-button" id="groups-tab-button" href="/@<%= @user.user_id %>/groups">所属コミュニティ</a>
     </div>
   </div>
+  <% case @tab %>
+  <% when "posts" %>
+  <style media="screen">
+    #posts-tab-button{
+      font-weight: bold;
+      border-bottom: 5px solid #ff6100;
+    }
+  </style>
+  <% @posts = Post.where(user_uniqid:@user.uniqid).order(updated_at: :desc) %>
+  <% @posts.each do |post| %>
+  <% @post = post %>
+  <%= render 'template/post' %>
+  <% end %>
+  <% when "groups" %>
+  <style media="screen">
+    #groups-tab-button{
+      font-weight: bold;
+      border-bottom: 5px solid #ff6100;
+    }
+  </style>
+  <% end %>
 </div>

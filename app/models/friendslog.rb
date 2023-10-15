@@ -1,0 +1,2 @@
+class Friendslog < ApplicationRecord
+end

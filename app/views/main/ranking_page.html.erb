@@ -1,0 +1,110 @@
+<div class="center-container">
+  <div class="center-header">
+    <h2 class="page-title">ランキング</h2>
+    <input class="gray-button" id="set-group" type="button" name="button" onclick="showHide('settings')" value="設定">
+    <% if Group.find_by(uniqid:@group) %>
+    <b>：<%= Group.find_by(uniqid:@group).name %></b>
+    <% end %>
+    <%= form_tag("/ranking/ctgr") do %>
+    <div class="settings hide" id="settings">
+      <div class="communities" id="communities">
+        <% @path_list.reverse_each do |path_list| %>
+        <% path_list.reverse_each do |path| %>
+        /
+        <input type="radio" name="group" value="<%= Group.find_by(uniqid:path).uniqid %>" required>
+        <a href="/community/<%= Group.find_by(uniqid:path).uniqid %>"><%= Group.find_by(uniqid:path).name %></a>
+        <% end %><br>
+        <% end %>
+      </div><br>
+      <div class="">
+        試験の名前：
+        <select class="exam_name" name="exam_name" required>
+          <option value="">選択してください</option>
+          <% @exam_list.each do |exam| %>
+          <option value="<%= exam.exam_name %>"><%= exam.exam_name %></option>
+          <% end %>
+        </select>
+      </div>
+      <br>
+      <button class="normal-button" type="submit" name="button">ランキングを見る</button>
+    </div>
+    <% end %>
+  </div>
+  <div class="center-main">
+    <% if @group != "" && @exam_name != "" %>
+    <div class="ranking-container">
+      <h2>総合</h2>
+      <table>
+        <% i = 0 %>
+        <% @post.each do |post| %>
+        <% i += 1 %>
+        <% user = User.find_by(uniqid:post.user_uniqid) %>
+        <tr>
+          <th>
+            <div class="rank">
+              <%= i %>
+            </div>
+          </th>
+          <th class="user-th">
+            <a href="/@<%= user.user_id %>">
+              <img class="mid-icon user-icon" src="<%= user.icon %>" alt="">
+              <div class="contents-name">
+                <span><%= user.user_name %></span>@<%= user.user_id %>
+              </div>
+            </a>
+          </th>
+          <th><div class="total"><%= post.total %></div></th>
+        </tr>
+        <% end %>
+      </table>
+    </div>
+    <% end %>
+  </div>
+</div>
+<style media="screen">
+  .center-main{
+    width: 2000px;
+    overflow-x:
+  }
+  .user-th{
+    text-align: start;
+  }
+  table{
+    width: 400px;
+  }
+  th{
+    width: auto;
+  }
+  .page-title{
+    display: inline;
+  }
+  .settings{
+    padding: 20px;
+  }
+  .exam_name{
+    border: 1px solid #aaa;
+    padding: 5px;
+    border-radius: 5px;
+  }
+  .ranking-container{
+    display: inline-block;
+    height: 100%;
+    padding: 20px;
+  }
+  .ranking-container h2{
+    display: inline-block;
+  }
+  .rank{
+    font-size: 25px;
+    font-weight: bold;
+  }
+  .total{
+    float: right;
+    font-size: 30px;
+    font-weight: bold;
+  }
+  #set-group{
+    display: inline;
+    float: right;
+  }
+</style>

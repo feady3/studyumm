@@ -7,16 +7,16 @@
     <div class="discription-container">
       <div class="name"><span><%= @community.name %></span></div>
       <% if @join_allow %>
-      <% if @in_group %>
-      <%= form_tag("/group_getout/#{session['uniqid']}/#{@community.uniqid}",class:"button-form") do %>
-      <button class="gray-button" type="submit" name="button">参加済み</button>
-      <a class="gray-button" style="margin-left:5px;" href="/community/create/<%= @community.uniqid %>">下層コミュニティを作成</a>
-      <% end %>
-      <% else %>
-      <%= form_tag("/group_join/#{session['uniqid']}/#{@community.uniqid}",class:"button-form") do %>
-      <button class="normal-button" type="submit" name="button">参加する</button>
-      <% end %>
-      <% end %>
+        <% if @in_group %>
+          <%= form_tag("/group_getout/#{session['uniqid']}/#{@community.uniqid}",class:"button-form") do %>
+            <button class="gray-button" type="submit" name="button">参加済み</button>
+            <a class="gray-button" style="margin-left:5px;" href="/community/create/<%= @community.uniqid %>">下層コミュニティを作成</a>
+          <% end %>
+        <% else %>
+          <%= form_tag("/group_join/#{session['uniqid']}/#{@community.uniqid}",class:"button-form") do %>
+            <button class="normal-button" type="submit" name="button">参加する</button>
+          <% end %>
+        <% end %>
       <% end %>
       <% flash[:msg] %>
       <div class="communities">
@@ -30,15 +30,30 @@
       </div>
     </div>
     <div class="tab-buttons">
-      <a class="tab-button" href="/community/<%= @community.uniqid %>">基本情報</a>
+      <a class="tab-button" href="/community/<%= @community.uniqid %>">ランキング</a>
       <a class="tab-button" href="/community/<%= @community.uniqid %>/included-communities">下層コミュニティ</a>
       <a class="tab-button" href="/community/<%= @community.uniqid %>">参加リクエスト</a>
     </div>
   </div>
   <% case @tab %>
   <% when "included-communities" %>
-    <% @included_communities.each do |group| %>
-      <%= group.name %>
+    <% i = 0 %>
+    <% @included_communities.each do |community| %>
+    <%
+    if community.icon
+      com_icon = community.icon
+    else
+      com_icon = Image::DEFAULT_ICON
+    end
+    %>
+    <div class="contents-container">
+      <a href="/community/<%= community.uniqid %>">
+        <img class="mid-icon com-icon" src="<%= com_icon %>" alt="">
+        <div class="contents-name">
+          <span><%= community.name %></span>
+        </div>
+      </a>
+    </div>
     <% end %>
   <% end %>
 </div>

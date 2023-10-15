@@ -1,8 +1,65 @@
-<%= stylesheet_link_tag "share", "data-turbo-track": "reload" %>
-<h2>成績をシェアする</h2>
+<%
+if Post.find_by(exam_name:params[:exam_name],user_uniqid:session['uniqid'])
+  input_data = Post.find_by(exam_name:params[:exam_name],user_uniqid:session['uniqid'])
+else
+  input_data = Post.new()
+  input_data.exam_name = params[:exam_name]
+end
+%>
 <div class="center-container">
-  <%= form_tag("/post/share",{multipart:true}) do %>
-  <textarea class="comment-form" name="comment" placeholder="コメントを添付"></textarea><br>
+  <h2>成績をシェアする</h2><br>
+  <%= form_tag("/share",{multipart:true}) do %>
+  <input id="only_friends" type="radio" name="publish_range" value="only_friends" checked>
+  <label for="only_friends">友達にのみ公開</label><br>
+  <input id="non_published" type="radio" name="publish_range" value="non_published">
+  <label for="non_published">誰にも公開しない</label><br>
+  <input class="normal-input" type="text" name="exam_name" value="<%= input_data.exam_name %>" placeholder="テストの名前" required><br>
+  <table>
+    <tr>
+      <th>科目</th><th>点数</th>
+    </tr>
+    <tr>
+      <td>数学（１）</td>
+      <td><input class="point" type="number" name="point[math1]" value="<%= input_data.math1 %>" placeholder="" step="1" min="0"><br></td>
+    </tr>
+    <tr>
+      <td>数学（２）</td>
+      <td><input class="point" type="number" name="point[math2]" value="<%= input_data.math2 %>" placeholder="" step="1" min="0"><br></td>
+    </tr>
+    <tr>
+      <td>英語（１）</td>
+      <td><input class="point" type="number" name="point[en1]" value="<%= input_data.en1 %>" placeholder="" step="1" min="0"><br></td>
+    </tr>
+    <tr>
+      <td>英語（２）</td>
+      <td><input class="point" type="number" name="point[en2]" value="<%= input_data.en2 %>" placeholder="" step="1" min="0"><br></td>
+    </tr>
+    <tr>
+      <td>国語（１）</td>
+      <td><input class="point" type="number" name="point[ja1]" value="<%= input_data.ja1 %>" placeholder="" step="1" min="0"><br></td>
+    </tr>
+    <tr>
+      <td>国語（２）</td>
+      <td><input class="point" type="number" name="point[ja2]" value="<%= input_data.ja2 %>" placeholder="" step="1" min="0"><br></td>
+    </tr>
+    <tr>
+      <td>理科（１）</td>
+      <td><input class="point" type="number" name="point[sci1]" value="<%= input_data.sci1 %>" placeholder="" step="1" min="0"><br></td>
+    </tr>
+    <tr>
+      <td>理科（２）</td>
+      <td><input class="point" type="number" name="point[sci2]" value="<%= input_data.sci2 %>" placeholder="" step="1" min="0"><br></td>
+    </tr>
+    <tr>
+      <td>社会（１）</td>
+      <td><input class="point" type="number" name="point[soc1]" value="<%= input_data.soc1 %>" placeholder="" step="1" min="0"><br></td>
+    </tr>
+    <tr>
+      <td>社会（２）</td>
+      <td><input class="point" type="number" name="point[soc2]" value="<%= input_data.soc2 %>" placeholder="" step="1" min="0"><br></td>
+    </tr>
+  </table><br>
+  <textarea class="normal-textarea" name="comments" placeholder="コメントを添付" maxlength="500"><%= input_data.comments %></textarea><br>
   <button class="normal-button" type="submit" name="button">シェアする</button><br><br>
   <% end %>
 </div>
