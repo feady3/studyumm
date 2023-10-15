@@ -22,4 +22,5 @@ test:
 
 production:
   <<: *default
-  database: postgres://studyumm_db_a9nl_user:AoDa0hu7WFPvU2YUn3SAiDQ6tXJqD7Af@dpg-ckluc1gu1l6c73aeflmg-a/studyumm_db_a9nl
+  database: db/test.sqlite3
+  url: <%= ENV['DATABASE_URL'] %>
