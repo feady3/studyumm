@@ -33,4 +33,6 @@ Rails.application.routes.draw do
   post '/group_getout/:user/:group' => 'communities#group_getout'
   #exams
   get '/exams/create' => 'exams/create.html.erb'
+
+  root 'render#index'
 end
