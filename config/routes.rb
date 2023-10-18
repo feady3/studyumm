@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   # main
+  get '/' => 'main#home'
   get '/home' => 'main#home'
   get '/search' => 'main#search_page'
   get '/search/:tab' => 'main#search_page'
