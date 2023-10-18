@@ -9,6 +9,7 @@
     <div class="settings hide" id="settings">
       <div class="communities" id="communities">
         <% @path_list.reverse_each do |path_list| %>
+        
         <% path_list.reverse_each do |path| %>
         /
         <input type="radio" name="group" value="<%= Group.find_by(uniqid:path).uniqid %>" required>
