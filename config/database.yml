@@ -22,10 +22,10 @@ test:
 
 production:
   <<: *default
-  # adapter: postgresql
-  # encoding: unicode
-  # pool: 5
-  # database: studyumm_production
-  # username: Studyumm
-  # password:
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  database: studyumm_production
+  username: Studyumm
+  password:
   url: <%= ENV['DATABASE_URL'] %>
