@@ -22,6 +22,9 @@ test:
 
 production:
   <<: *default
-  database: studyumm_production
-  username: studyumm
-  password: <%= ENV['STUDYUMM_DATABASE_PASSWORD'] %>
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  # database: studyumm_production
+  # username: studyumm
+  # password: <%= ENV['STUDYUMM_DATABASE_PASSWORD'] %>
