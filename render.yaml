@@ -1,7 +1,7 @@
 databases:
   - name: studyumm_db
     databaseName: studyumm_db_cd9a
-    user: studyumm_db_cd9a_user
+    user: Studyumm
     region: singapore
 
 services:
